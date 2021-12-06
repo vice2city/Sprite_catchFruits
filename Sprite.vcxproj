@@ -157,7 +157,7 @@
     <Image Include="apple.jpg" />
     <Image Include="banana.jpg" />
     <Image Include="basket.jpg" />
-    <Image Include="boob.jpg" />
+    <Image Include="bomb.jpg" />
     <Image Include="icon.jpg" />
     <Image Include="lemon.jpg" />
   </ItemGroup>

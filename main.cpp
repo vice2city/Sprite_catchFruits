@@ -7,7 +7,7 @@
 
 const int winWidth = 800, winHeight = 600;
 const int maxNum = 30;
-ACL_Image imgApple, imgBanana, imgBasket, imgLemon, imgBoob;
+ACL_Image imgApple, imgBanana, imgBasket, imgLemon, imgBomb;
 Basket* basket = NULL;
 Item* items[maxNum] = { 0 };
 int itemNum = 0;
@@ -27,7 +27,7 @@ int Setup()
 	loadImage("apple.jpg", &imgApple);
 	loadImage("banana.jpg", &imgBanana);
 	loadImage("lemon.jpg", &imgLemon);
-	loadImage("boob.jpg", &imgBoob);
+	loadImage("bomb.jpg", &imgBomb);
 	basket = new Basket(winWidth/2-60, winHeight-110, 120, 100, 10, &imgBasket);
 
 	registerTimerEvent(timerEvent);
@@ -40,6 +40,8 @@ int Setup()
 
 void Update()
 {
+	bool flag = false;
+
 	for (int i = 0; i < itemNum; ++i)
 	{
 		if (items[i] && basket)
@@ -68,6 +70,7 @@ void Update()
 	{
 		if (items[i])
 		{
+			flag = true;
 			items[i]->drawSprite();
 			if (items[i]->getRect().y > winHeight)
 			{
@@ -76,10 +79,10 @@ void Update()
 			}
 		}
 	}
-	if (itemNum >= maxNum && items[itemNum-1] == NULL)
+	if (itemNum >= maxNum && flag == false)
 	{
 		setTextSize(70);
-		paintText(winWidth/2-280, winHeight/2-35, "Game Over");
+		paintText(winWidth/2-160, winHeight/2-35, "Game Over");
 	}
 	endPaint();
 }
@@ -101,6 +104,10 @@ void timerEvent(int id)
 			createItem();
 		}
 		break;
+	case 2:
+		basket->changeSpeed(10);
+		cancelTimer(2);
+		break;
 	}
 	Update();
 }
@@ -121,10 +128,10 @@ void createItem()
 	switch (t)
 	{
 	case 0:
-		items[itemNum++] = new Boob(x, &imgBoob);
+		items[itemNum++] = new Bomb(x, &imgBomb);
 		break;
 	case 1:
-		items[itemNum++] = new Boob(x, &imgBoob);
+		items[itemNum++] = new Bomb(x, &imgBomb);
 		break;
 	case 2:
 		items[itemNum++] = new Banana(x, &imgBanana);

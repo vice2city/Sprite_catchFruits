@@ -7,6 +7,7 @@ public:
 	void addScore(int s);
 	int getScore();
 	void move(int ,int);
+	void changeSpeed(int);
 private:
 	int score = 0;
 };

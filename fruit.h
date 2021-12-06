@@ -18,8 +18,9 @@ public:
 	Lemon(int, ACL_Image*);
 };
 
-class Boob :public Item
+class Bomb :public Item
 {
 public:
-	Boob(int, ACL_Image*);
+	Bomb(int, ACL_Image*);
+	void toggle(Basket*);
 };

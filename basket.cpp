@@ -29,3 +29,8 @@ void Basket::move(int key, int winWidth)
 		break;
 	}
 }
+
+void Basket::changeSpeed(int s)
+{
+	speed = s;
+}

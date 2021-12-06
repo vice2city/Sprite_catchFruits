@@ -17,8 +17,15 @@ Lemon::Lemon(int dx, ACL_Image* i)
 	score = 5;
 }
 
-Boob::Boob(int dx, ACL_Image* i)
+Bomb::Bomb(int dx, ACL_Image* i)
 	: Item(dx, 12, i)
 {
 	score = -5;
+}
+
+void Bomb::toggle(Basket* basket)
+{
+	basket->addScore(score);
+	basket->changeSpeed(5);
+	startTimer(2, 5000);
 }
